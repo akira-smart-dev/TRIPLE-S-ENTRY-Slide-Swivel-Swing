@@ -1,0 +1,44 @@
+# --- OS ---
+Thumbs.db
+.DS_Store
+Desktop.ini
+
+# --- Editors ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- Temp / cache / logs ---
+*.tmp
+*.tmp.*
+*.log
+.cache/
+logs/
+
+# --- Local environment overrides ---
+.env
+.env.local
+.env.*.local
+
+# --- Build output (reserved) ---
+dist/
+build/
+node_modules/
+
+# --- Vercel ---
+.vercel/
+
+# --- Raw client deliverables (working copies are in /assets) ---
+public/
+
+# --- Internal project docs / private correspondence ---
+chat.md
+project_status&plan.md
+
+# --- Helper scripts (one-off, local only) ---
+scripts/
+
+# --- Misc ---
+*.zip
+*.bak
