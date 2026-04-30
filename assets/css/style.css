@@ -176,22 +176,15 @@ p { margin: 0 0 1em; color: var(--color-text-soft); }
   gap: 24px;
 }
 .nav__brand {
-  position: relative;
   display: flex;
   align-items: center;
   gap: 12px;
   flex-shrink: 0;
-  height: 44px;            /* lock brand to original header content height */
-  padding-left: 160px;     /* leave room for the absolutely-positioned logo */
 }
 .nav__brand img {
-  position: absolute;      /* logo overflows brand box, header height unchanged */
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 150px;
+  height: 84px;            /* prominent enough to match the GEZE reference visually */
   width: auto;
-  pointer-events: none;
+  display: block;
 }
 .nav__brand-text {
   display: none;
@@ -350,7 +343,7 @@ p { margin: 0 0 1em; color: var(--color-text-soft); }
 }
 .hero__meta-item span { font-size: 1rem; color: #fff; font-weight: 600; }
 
-/* ---------- Hero slider (full image visible, capped width on wide monitors) ---------- */
+/* ---------- Hero slider (fills display, capped height to fit viewport) ---------- */
 .hero-slider {
   position: relative;
   isolation: isolate;
@@ -361,9 +354,8 @@ p { margin: 0 0 1em; color: var(--color-text-soft); }
 .hero-slider .hero-slides {
   position: relative;
   display: grid;                              /* all slides stacked in one grid cell */
-  width: 100%;
-  max-width: 1100px;                          /* caps the image size on big monitors */
-  margin: 0 auto;                             /* centred — dark background fills the gutters */
+  width: 100%;                                /* full display width — no side gutters */
+  height: clamp(420px, 80vh, 880px);          /* fits within the viewport with a bit more presence */
 }
 .hero-slide {
   grid-column: 1 / 2;
@@ -381,8 +373,16 @@ p { margin: 0 0 1em; color: var(--color-text-soft); }
 }
 .hero-slide__image {
   width: 100%;
-  height: auto;                               /* native 1717:916 aspect — full image, no crop */
+  height: 100%;
+  object-fit: cover;                          /* fills container — minimal crop on wide monitors */
+  object-position: center;
   display: block;
+}
+
+/* Phone: keep the natural aspect so left/right text in the banners isn't cropped */
+@media (max-width: 720px) {
+  .hero-slider .hero-slides { height: auto; }
+  .hero-slide__image { height: auto; object-fit: fill; }
 }
 
 /* ---------- Hero meta / CTA strip below the slider ---------- */
